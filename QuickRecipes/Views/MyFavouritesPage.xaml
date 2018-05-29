@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="QuickRecipes.Views.MyFavouritesPage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" Android="0" iOS="0, 40, 0, 0" />
+    </ContentPage.Padding>
+    <StackLayout>
+        <StackLayout Padding="20, 10, 20, 0">
+            <Image Source="favoritelist.png" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit" />
+        </StackLayout>
+        <StackLayout IsVisible="{Binding IsListEmpty}" VerticalOptions="Center">
+            <Label Text="Your favourites list is empty!" HorizontalTextAlignment="Center" Margin="0, 100, 0 ,0" />
+        </StackLayout>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" IsVisible="{Binding IsBusy}" />
+        <ListView x:Name="MyFavouritesListView" HasUnevenRows="True" SeparatorVisibility="None" ItemsSource="{Binding FavouriteRecipes}" ItemTapped="Handle_ItemTapped">
+            <ListView.Footer>
+                <Label />
+            </ListView.Footer>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Clicked="RemoveItem_Clicked" CommandParameter="{Binding Id}" Icon="removewhite.png" Text="Remove" IsDestructive="true" />
+                            <MenuItem Clicked="ViewMore_Clicked" CommandParameter="{Binding Id}" Icon="moreinfo.png" Text="View" />
+                        </ViewCell.ContextActions>
+                        <Grid Padding="20, 0, 20, 20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="300" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding ImageURL}" Aspect="AspectFill" Grid.Row="0" Grid.Column="0" />
+                            <Label HorizontalTextAlignment="Center" Text="{Binding DishName}" FontAttributes="Bold" TextColor="White" VerticalOptions="EndAndExpand" FontSize="25" Grid.Row="0" Grid.Column="0" BackgroundColor="#dedede" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

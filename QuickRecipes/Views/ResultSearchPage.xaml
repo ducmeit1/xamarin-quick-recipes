@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuickRecipes.Views.ResultSearchPage">
+    <ContentPage.Content>
+                <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal" Padding="20, 10, 20, 10">
+                    <Label Text="Ingredient: " FontSize="20" />
+                    <Label Text="{Binding Ingredient}" FontSize="20" FontAttributes="Bold" TextColor="Red" />
+                </StackLayout>
+                <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" IsVisible="{Binding IsBusy}"/>
+                    <ListView HasUnevenRows="true" SeparatorVisibility="None" ItemsSource="{Binding Recipes}" x:Name="ResultSearchListView" ItemTapped="Handle_ItemTapped">
+                    <ListView.Footer>
+                        <Label />
+                    </ListView.Footer>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Clicked="ViewMore_Clicked" CommandParameter="{Binding Id}" Text="View" Icon="moreinfo.png" />
+                                        <MenuItem Clicked="AddFavourite_Clicked" CommandParameter="{Binding Id}" Icon="addfavoritewhite.png" Text="Favorite" />
+                                    </ViewCell.ContextActions>
+                                    <StackLayout Padding="20, 0, 20, 20" Spacing="10">
+                                        <Image Source="{Binding ImageURL}" Aspect="Fill" HeightRequest="250"/>
+                                        <Label Text="{Binding DishName}" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                                        <Label Text="{Binding Detail}" FontSize="16" HorizontalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="QuickRecipes.Views.AddRecipePage">
+    <ScrollView>
+        <Grid Margin="20" RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="300"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!-- Row 1 -->
+            <Label Grid.Row="0" Grid.Column="0" Text="Dish Name:" VerticalTextAlignment="Center" />
+            <Entry Grid.Row="0" Grid.Column="1" x:Name="txtName" Text="{Binding Recipe.DishName}" Keyboard="Default" />
+            <!-- Row 2 -->
+            <Label Grid.Row="1" Grid.Column="0" Text="Rate (1-5):" VerticalTextAlignment="Center" />
+            <Entry Grid.Row="1" Grid.Column="1" x:Name="txtRate" Text="{Binding Recipe.Rate}" Keyboard="Numeric" />
+            <!-- Row 3 -->
+            <Label Grid.Row="2" Grid.Column="0" Text="Detail:" VerticalTextAlignment="Center" />
+            <Editor Grid.Row="2" Grid.Column="1" x:Name="txtDetail" BackgroundColor="#ededed" Text="{Binding Recipe.Detail}" Keyboard="Default" />
+            <!-- Row 4 -->
+            <Label Grid.Row="3" Grid.Column="0" Text="Ingredients:" VerticalTextAlignment="Center" />
+            <Editor Grid.Row="3" Grid.Column="1" x:Name="txtIngredients" BackgroundColor="#ededed" Text="{Binding IngredientsText}" Keyboard="Default" />
+            <!-- Row 5 -->
+            <Label Grid.Row="4" Grid.Column="0" Text="Prep:" VerticalTextAlignment="Center" />
+            <Entry Grid.Row="4" Grid.Column="1" x:Name="txtPrep" Placeholder="Enter Prep Time" Text="{Binding Recipe.Prep}" Keyboard="Default" />
+            <!-- Row 6 -->
+            <Label Grid.Row="5" Grid.Column="0" Text="Cook:" VerticalTextAlignment="Center" />
+            <Entry Grid.Row="5" Grid.Column="1" x:Name="txtCook" Placeholder="Enter Cook Time" Text="{Binding Recipe.Cook}" Keyboard="Default" />
+            <!-- Row 7 -->
+            <Label Grid.Row="6" Grid.Column="0" Text="Ready In:" VerticalTextAlignment="Center" />
+            <Entry Grid.Row="6" Grid.Column="1" x:Name="txtReadyIn" Placeholder="Enter Ready In Time" Text="{Binding Recipe.ReadyIn}" Keyboard="Default" />
+            <!-- Row 8 -->
+            <Label Grid.Row="7" Grid.Column="0" Text="Directions:" VerticalTextAlignment="Center" />
+            <Editor Grid.Row="7" Grid.Column="1" x:Name="txtDirections" BackgroundColor="#ededed" Text="{Binding Recipe.Directions}" Keyboard="Default" />
+            <!--Row 9 -->
+            <Grid Grid.Row="8" Grid.ColumnSpan="2" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Text="UPLOAD PHOTO" FontSize="20" Grid.Row="0" Grid.Column="0" BorderWidth="1" Clicked="PickPhoto_Clicked"/>
+            <Button Text="CAMERA" FontSize="20" Grid.Row="0" Grid.Column="1" BorderWidth="1" Clicked="TakeFromCamera_Clicked"/>
+            </Grid>
+            <!-- Row 10 -->
+            <Button Text="SAVE" FontSize="20" Grid.Row="9" Grid.ColumnSpan="2" BorderWidth="1" Clicked="AddItem_Clicked" />
+            <!--Row 11 -->
+            <Image Source="{Binding Recipe.ImageURL}" x:Name="imgRecipe" Aspect="AspectFill" HorizontalOptions="FillAndExpand" Grid.Row="10" Grid.ColumnSpan="2"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

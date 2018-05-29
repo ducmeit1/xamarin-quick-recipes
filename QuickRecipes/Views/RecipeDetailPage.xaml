@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="QuickRecipes.Views.RecipeDetailPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="EditItem_Clicked" CommandParameter="{Binding Recipe.Id}" Icon="edit.png" Text="Edit" Order="Primary" />
+        <ToolbarItem Clicked="AddFavourite_Clicked" CommandParameter="{Binding Recipe.Id}" Icon="addfavorite.png" Text="Favourite" Order="Primary" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Spacing="10" Padding="20, 10, 20, 10">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" IsVisible="{Binding IsBusy}"/>
+                <Image Source="{Binding Recipe.ImageURL}" Aspect="Fill" HeightRequest="250" />
+                <Label Text="{Binding Recipe.DishName}" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Text="Rate: " FontSize="16" FontAttributes="Bold" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Recipe.Rate}" FontAttributes="Bold" TextColor="Red" FontSize="16" />
+                        <Image Source="star.png" Aspect="AspectFit" HeightRequest="16" WidthRequest="16" />
+                        <Label Text="/ 5" FontSize="16" FontAttributes="Bold"/>
+                        <Image Source="star.png" Aspect="AspectFit" HeightRequest="16" WidthRequest="16" />
+                    </StackLayout>
+                </StackLayout>
+                <Label Text="{Binding Recipe.Detail}" FontSize="16" FontAttributes="Italic" TextColor="Gray" HorizontalOptions="FillAndExpand" />
+                <ListView ItemsSource="{Binding Recipe.Ingredients}" SeparatorVisibility="None" HasUnevenRows="true" HeightRequest="200">
+                    <ListView.Footer>
+                        <Label />
+                    </ListView.Footer>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid BackgroundColor="Silver" Padding="10">
+                                    <Label Text="{Binding .}" TextColor="White" FontAttributes="Bold" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label Text="Directions" FontSize="18" FontAttributes="Bold" />
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Prep" FontSize="14" FontAttributes="Bold" />
+                        <Label Text="{Binding Recipe.Prep}" FontSize="14" TextColor="Gray" />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Cook" FontSize="14" FontAttributes="Bold" />
+                        <Label Text="{Binding Recipe.Cook}" FontSize="14" TextColor="Gray" />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Ready In" FontSize="14" FontAttributes="Bold" />
+                        <Label Text="{Binding Recipe.ReadyIn}" FontSize="14" TextColor="Gray" />
+                    </StackLayout>
+                </StackLayout>
+                <Label Text="{Binding Recipe.Directions}" FontSize="16" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

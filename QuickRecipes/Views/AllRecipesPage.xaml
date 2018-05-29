@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="QuickRecipes.Views.AllRecipesPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Order="Primary" Icon="add.png" Clicked="MoveToAddPage_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+    <StackLayout Orientation="Vertical">
+        <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" IsVisible="{Binding IsBusy}"/>
+                <ListView HasUnevenRows="True" SeparatorVisibility="None" ItemsSource="{Binding Recipes}" x:Name="AllRecipesListView" ItemTapped="Handle_ItemTapped">
+                    <ListView.Footer>
+                        <Label />
+                    </ListView.Footer>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Clicked="ViewMore_Clicked" CommandParameter="{Binding Id}" Icon="moreinfo.png" Text="View" />
+                                    <MenuItem Clicked="RemoveItem_Clicked" CommandParameter="{Binding Id}" Icon="removewhite.png" Text="Remove" IsDestructive="true" />
+                                    <MenuItem Clicked="EditItem_Clicked" CommandParameter="{Binding Id}" Icon="editwhite.png" Text="Edit" />
+                                </ViewCell.ContextActions>
+                                <Grid Padding="20, 0, 20, 20">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="300"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding ImageURL}" Aspect="Fill" Grid.Row="0" Grid.Column="0" />
+                                    <Label HorizontalTextAlignment="Center" Text="{Binding DishName}" FontAttributes="Bold" TextColor="White" VerticalOptions="EndAndExpand" FontSize="25" Grid.Row="0" Grid.Column="0" BackgroundColor="#dedede" />
+                                </Grid>                        
+                        </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

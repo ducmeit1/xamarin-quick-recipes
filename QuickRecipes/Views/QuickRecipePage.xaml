@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="QuickRecipes.Views.QuickRecipePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" />
+                <StackLayout Padding="20, 10, 20, 0">
+                    <Image Source="quickrecipe.png" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" BackgroundColor="#f7cac9" Padding="10">
+                    <Entry x:Name="IngredientSearch" Placeholder="Enter an ingrendient" TextChanged="Handle_TextChanged" HorizontalOptions="FillAndExpand" />
+                    <Button Text="Clear" FontSize="20" Clicked="Clear_Clicked" HorizontalOptions="End" TextColor="White" FontAttributes="Bold" />
+                </StackLayout>
+                <Grid Padding="20, 0, 20, 0">
+                    <ListView x:Name="IngredientsListView" HasUnevenRows="true" ItemTapped="Ingredients_ItemTapped" SeparatorVisibility="None" ItemsSource="{Binding MyIngredients}" IsVisible="True">
+                        <ListView.Footer>
+                            <Label />
+                        </ListView.Footer>
+                    </ListView>
+                    <ListView x:Name="SuggestionListView" HasUnevenRows="true" ItemTapped="Suggestion_ItemTapped" SeparatorVisibility="None" IsVisible="False">
+                        <ListView.Footer>
+                            <Label />
+                        </ListView.Footer>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid BackgroundColor="#f7cac9" Padding="10">
+                                        <Label Text="{Binding .}" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
